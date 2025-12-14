@@ -1,0 +1,43 @@
+/* Footer uses primary color system */
+.site-footer { 
+  background: #07101a; 
+  color: #99a3b8; 
+  padding: 1.25rem 0;
+  border-top: 1px solid rgba(53, 130, 254, 0.1);
+}
+
+.footer-inner { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.socials a { 
+  color: #cbd5e1; 
+  margin-right: 0.75rem; 
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.socials a:hover {
+  color: #3582FE;
+}
+
+/* Accent link styling */
+.footer-inner a {
+  color: #3582FE;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-inner a:hover {
+  color: #5a9bff;
+}
+
+@media (max-width: 720px) {
+  .footer-inner { flex-direction: column; text-align: center }
+}

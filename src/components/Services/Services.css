@@ -1,0 +1,574 @@
+/* --- Services Section Color Variables (Inherits from :root but with teal accent) --- */
+.services-section {
+  /* Keep consistent with global color system in `src/index.css` */
+  --section-accent: var(--accent-teal, #64ffda);
+  --section-accent-rgb: var(--accent-teal-rgb, 100, 255, 218);
+  --section-bg: var(--bg-dark, #0a0f1a);
+}
+
+/* --- Accent Animations (Underline + Background Radiation) --- */
+@keyframes underlinePulse {
+  0%, 100% {
+    transform: translateX(-50%) scaleX(0.35);
+    opacity: 0.85;
+    box-shadow: 0 0 0 rgba(var(--section-accent-rgb), 0);
+  }
+  50% {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 1;
+    box-shadow: 0 0 22px rgba(var(--section-accent-rgb), 0.35);
+  }
+}
+
+@keyframes radiationPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0.55;
+    filter: blur(34px);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.85;
+    filter: blur(44px);
+  }
+}
+
+/* --- Animation Keyframes --- */
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* --- Section Layout --- */
+.services-section {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  padding: 80px 40px;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+  background: var(--section-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 50px;
+}
+
+/* Background “radiation” glow using the section’s base color */
+.services-section::before,
+.services-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.services-section::before {
+  left: 50%;
+  top: 45%;
+  width: 900px;
+  height: 900px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(var(--section-accent-rgb), 0.14) 0%,
+    rgba(var(--section-accent-rgb), 0.06) 28%,
+    transparent 70%
+  );
+  animation: radiationPulse 5.5s ease-in-out infinite;
+}
+
+.services-section::after {
+  left: 15%;
+  top: 20%;
+  width: 520px;
+  height: 520px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(var(--section-accent-rgb), 0.10) 0%,
+    transparent 65%
+  );
+  animation: radiationPulse 7.5s ease-in-out infinite;
+  animation-delay: -1.2s;
+}
+
+/* Interactive particles container */
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Extra fixed background elements (react to cursor) */
+.bg-orb,
+.bg-streak {
+  position: absolute;
+  pointer-events: auto;
+  will-change: transform;
+  transition: transform 0.28s ease-out;
+  z-index: 0;
+}
+
+.bg-orb {
+  border-radius: 999px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(var(--section-accent-rgb), 0.22) 0%,
+    rgba(var(--section-accent-rgb), 0.10) 25%,
+    transparent 70%
+  );
+  filter: blur(8px);
+}
+
+.bg-streak {
+  width: 420px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--section-accent-rgb), 0.45),
+    transparent
+  );
+  filter: blur(0.2px);
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: auto;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.particle:hover {
+  transform: scale(1.5) !important;
+}
+
+.particle.small {
+  width: 4px;
+  height: 4px;
+  background: rgba(100, 255, 218, 0.4);
+}
+
+.particle.medium {
+  width: 8px;
+  height: 8px;
+  background: rgba(100, 255, 218, 0.25);
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+}
+
+.particle.large {
+  width: 12px;
+  height: 12px;
+  background: rgba(100, 255, 218, 0.15);
+  box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
+}
+
+/* Floating shapes */
+.floating-shape {
+  position: absolute;
+  pointer-events: auto;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.floating-shape:hover {
+  transform: scale(1.3) rotate(45deg) !important;
+}
+
+.shape-square {
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  background: rgba(100, 255, 218, 0.05);
+}
+
+.shape-circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid rgba(100, 255, 218, 0.15);
+  background: rgba(100, 255, 218, 0.03);
+}
+
+.shape-triangle {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 20px solid rgba(100, 255, 218, 0.1);
+}
+
+.shape-ring {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid rgba(100, 255, 218, 0.12);
+  background: transparent;
+}
+
+.shape-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(100, 255, 218, 0.5);
+  box-shadow: 0 0 15px rgba(100, 255, 218, 0.4);
+}
+
+/* --- Top Left Header --- */
+.section-header {
+  margin-bottom: 60px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
+  display: inline-block;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--section-accent),
+    transparent
+  );
+  border-radius: 2px;
+  transform-origin: center;
+  animation: underlinePulse 2.2s ease-in-out infinite;
+}
+
+.section-subtitle {
+  color: #5a6a8a;
+  font-size: 1rem;
+  margin-top: 25px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.text-blue {
+  color: var(--section-accent);
+}
+
+/* --- Cards Container --- */
+.cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* --- Service Card --- */
+.service-card {
+  position: relative;
+  flex: 1;
+  max-width: 450px;
+  min-width: 380px;
+  background: transparent;
+  animation: slideUp 0.6s ease-out backwards;
+}
+
+.service-card:nth-child(1) { animation-delay: 0.1s; }
+.service-card:nth-child(2) { animation-delay: 0.25s; }
+
+/* Card glow effect on hover */
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(circle, rgba(100, 255, 218, 0.15) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+/* Card top section with icon */
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 25px 30px;
+  background: linear-gradient(135deg, rgba(100, 255, 218, 0.08) 0%, rgba(100, 255, 218, 0.02) 100%);
+  border: 1px solid rgba(100, 255, 218, 0.15);
+  border-bottom: none;
+  border-radius: 20px 20px 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-top::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle at top right, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Icon wrapper */
+.icon-wrapper {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #0d1a2d 0%, #162234 100%);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.service-card:hover .icon-wrapper {
+  transform: scale(1.1) rotate(-5deg);
+  border-color: rgba(100, 255, 218, 0.4);
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(100, 255, 218, 0.15);
+}
+
+/* Card title area */
+.card-title-area {
+  flex: 1;
+}
+
+.card-title-area h3 {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  letter-spacing: 0.5px;
+}
+
+.card-title-area .tagline {
+  color: #64ffda;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* Card body */
+.card-body {
+  background: linear-gradient(135deg, rgba(19, 31, 58, 0.8) 0%, rgba(22, 34, 52, 0.6) 100%);
+  border: 1px solid rgba(100, 255, 218, 0.15);
+  border-top: none;
+  border-radius: 0 0 20px 20px;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(0.1px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Service items container */
+.service-items {
+  padding: 10px 0;
+  border-radius: 15px 15px 0 0;
+  overflow: hidden;
+}
+
+/* Individual service item */
+.service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 18px 25px;
+  transition: all 0.3s ease;
+  cursor: default;
+  position: relative;
+}
+
+.service-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: #64ffda;
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.service-item:hover {
+  background: rgba(100, 255, 218, 0.03);
+}
+
+.service-item:hover::before {
+  transform: scaleY(1);
+}
+
+/* Service item number */
+.item-number {
+  width: 32px;
+  height: 32px;
+  background: rgba(100, 255, 218, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #64ffda;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.service-item:hover .item-number {
+  background: #64ffda;
+  color: #0a1220;
+}
+
+/* Service item content */
+.item-content h4 {
+  color: #e2e8f0;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  transition: color 0.3s ease;
+}
+
+.service-item:hover .item-content h4 {
+  color: #fff;
+}
+
+.item-content p {
+  color: #64748b;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Card footer with CTA */
+.card-footer {
+  padding: 20px 25px;
+  border-top: 1px solid rgba(100, 255, 218, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-footer span {
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.card-footer .arrow-link {
+  width: 40px;
+  height: 40px;
+  background: rgba(100, 255, 218, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64ffda;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(100, 255, 218, 0.2);
+}
+
+.card-footer .arrow-link:hover {
+  background: #64ffda;
+  color: #0a1220;
+  transform: translateX(5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .cards-container {
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  
+  .service-card {
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-section {
+    padding: 60px 20px;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .card-top {
+    padding: 20px;
+  }
+  
+  .icon-wrapper {
+    width: 55px;
+    height: 55px;
+    font-size: 1.5rem;
+  }
+  
+  .card-title-area h3 {
+    font-size: 1.2rem;
+  }
+  
+  .service-item {
+    padding: 15px 20px;
+  }
+}

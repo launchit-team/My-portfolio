@@ -1,0 +1,576 @@
+/* --- Contact Section Color Variables (Coral/Orange accent as contrast) --- */
+.contact {
+  --section-accent: #ff6b35;          /* Coral - warm contrast to blue */
+  --section-accent-secondary: #ff3366; /* Pink secondary */
+  --section-accent-cool: #00dcc0;      /* Teal for balance */
+  --section-primary: #3582FE;          /* Primary blue when needed */
+  --section-primary-dark: #173590;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 6rem 2rem;
+  overflow: hidden;
+  background: #050505;
+}
+
+/* ========== CREATIVE MESH BACKGROUND ========== */
+.contact-mesh-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.mesh-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0.8;
+}
+
+.mesh-1 {
+  background: 
+    radial-gradient(ellipse 80% 50% at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+      rgba(255, 95, 31, 0.15) 0%, 
+      transparent 50%),
+    radial-gradient(ellipse 60% 80% at 20% 80%, 
+      rgba(255, 0, 128, 0.12) 0%, 
+      transparent 50%),
+    radial-gradient(ellipse 50% 60% at 80% 20%, 
+      rgba(0, 255, 200, 0.1) 0%, 
+      transparent 50%);
+  transition: background 0.3s ease;
+}
+
+.mesh-2 {
+  background: 
+    radial-gradient(circle at 70% 60%, 
+      rgba(255, 200, 50, 0.08) 0%, 
+      transparent 40%),
+    radial-gradient(circle at 30% 30%, 
+      rgba(120, 0, 255, 0.1) 0%, 
+      transparent 40%);
+  animation: meshMove 20s ease-in-out infinite;
+}
+
+.mesh-3 {
+  background: 
+    conic-gradient(from 180deg at 50% 50%, 
+      transparent 0deg, 
+      rgba(255, 100, 50, 0.03) 60deg, 
+      transparent 120deg,
+      rgba(0, 200, 255, 0.03) 180deg,
+      transparent 240deg,
+      rgba(255, 50, 150, 0.03) 300deg,
+      transparent 360deg);
+  animation: meshRotate 30s linear infinite;
+}
+
+@keyframes meshMove {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(2%, -2%) scale(1.02); }
+  66% { transform: translate(-2%, 2%) scale(0.98); }
+}
+
+@keyframes meshRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Aurora effect */
+.aurora {
+  position: absolute;
+  top: 0;
+  left: -50%;
+  right: -50%;
+  height: 60%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 90, 50, 0.03),
+    rgba(255, 50, 150, 0.05),
+    rgba(100, 50, 255, 0.03),
+    rgba(0, 200, 200, 0.04),
+    transparent
+  );
+  filter: blur(60px);
+  animation: aurora 15s ease-in-out infinite;
+  transform: skewY(-5deg);
+}
+
+@keyframes aurora {
+  0%, 100% { transform: skewY(-5deg) translateX(-10%); opacity: 0.6; }
+  50% { transform: skewY(-5deg) translateX(10%); opacity: 1; }
+}
+
+/* Floating particles */
+.particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  left: calc(var(--i) * 5%);
+  top: 100%;
+  animation: particleRise 10s linear infinite;
+  animation-delay: calc(var(--i) * -0.5s);
+}
+
+.particle:nth-child(odd) {
+  background: rgba(255, 120, 50, 0.5);
+  width: 2px;
+  height: 2px;
+}
+
+.particle:nth-child(3n) {
+  background: rgba(0, 220, 180, 0.4);
+}
+
+@keyframes particleRise {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% {
+    transform: translateY(-100vh) translateX(20px);
+    opacity: 0;
+  }
+}
+
+/* Glowing lines */
+.glow-lines {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.4;
+}
+
+.glow-line {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 150, 50, 0.6), transparent);
+  animation: glowMove 8s ease-in-out infinite;
+}
+
+.line-1 {
+  top: 30%;
+  left: 0;
+  width: 60%;
+  animation-delay: 0s;
+}
+
+.line-2 {
+  top: 50%;
+  right: 0;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(0, 220, 200, 0.5), transparent);
+  animation-delay: -3s;
+}
+
+.line-3 {
+  top: 70%;
+  left: 20%;
+  width: 50%;
+  background: linear-gradient(90deg, transparent, rgba(255, 80, 150, 0.5), transparent);
+  animation-delay: -5s;
+}
+
+@keyframes glowMove {
+  0%, 100% { transform: translateX(-100%); opacity: 0; }
+  50% { transform: translateX(100%); opacity: 1; }
+}
+
+/* ========== CONTENT LAYOUT ========== */
+.contact-container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ========== LEFT SIDE ========== */
+.contact-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.contact-header {
+  text-align: left;
+}
+
+.header-decoration {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.deco-line {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #ff6b35, #ff3366);
+  border-radius: 2px;
+}
+
+.deco-dot {
+  width: 8px;
+  height: 8px;
+  background: #00dcc0;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+.contact-title {
+  margin: 0;
+}
+
+.title-line {
+  display: block;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.title-highlight {
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff3366 50%, #00dcc0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.contact-desc {
+  margin: 1.5rem 0 0 0;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.7;
+  max-width: 400px;
+}
+
+/* Email Card */
+.email-card {
+  position: relative;
+  display: block;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  text-decoration: none;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.email-card:hover {
+  border-color: rgba(255, 107, 53, 0.3);
+  transform: translateY(-4px);
+}
+
+.email-card-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.email-card:hover .email-card-glow {
+  opacity: 1;
+}
+
+.email-card-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.email-icon-wrap {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.15) 0%, rgba(255, 51, 102, 0.15) 100%);
+  border-radius: 16px;
+  flex-shrink: 0;
+}
+
+.email-icon-wrap svg {
+  width: 26px;
+  height: 26px;
+  color: #ff6b35;
+}
+
+.email-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.email-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.email-address {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.email-arrow {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.email-arrow svg {
+  width: 18px;
+  height: 18px;
+  color: rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.email-card:hover .email-arrow {
+  background: rgba(255, 107, 53, 0.2);
+}
+
+.email-card:hover .email-arrow svg {
+  color: #ff6b35;
+  transform: translate(2px, -2px);
+}
+
+/* ========== RIGHT SIDE - FORM ========== */
+.contact-right {
+  display: flex;
+  align-items: center;
+}
+
+.contact-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  backdrop-filter: blur(10px);
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 1.25rem 0 0.75rem 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group textarea {
+  resize: none;
+  min-height: 100px;
+}
+
+.form-group label {
+  position: absolute;
+  left: 0;
+  top: 1.25rem;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+}
+
+.form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label,
+.form-group textarea:focus ~ label,
+.form-group textarea:not(:placeholder-shown) ~ label {
+  top: 0;
+  font-size: 0.75rem;
+  color: #3582FE;
+  letter-spacing: 0.05em;
+}
+
+.input-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3582FE, #173590);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-group input:focus ~ .input-line,
+.form-group textarea:focus ~ .input-line {
+  width: 100%;
+}
+
+/* Submit Button */
+.submit-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.25rem 2rem;
+  background: transparent;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.btn-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(99.28deg, #3582FE 2.15%, #173590 97.85%);
+  border-radius: 16px;
+  transition: all 0.4s ease;
+}
+
+.submit-btn:hover .btn-bg {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+.btn-text {
+  position: relative;
+  z-index: 1;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+.btn-icon {
+  position: relative;
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.btn-icon svg {
+  width: 100%;
+  height: 100%;
+  color: #fff;
+}
+
+.submit-btn:hover .btn-icon {
+  transform: translateX(4px);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.submit-btn:disabled .btn-bg {
+  filter: grayscale(0.5);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 900px) {
+  .contact {
+    padding: 4rem 1.5rem;
+  }
+
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .contact-left {
+    text-align: center;
+    align-items: center;
+  }
+
+  .contact-header {
+    text-align: center;
+  }
+
+  .header-decoration {
+    justify-content: center;
+  }
+
+  .contact-desc {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .email-card {
+    max-width: 400px;
+  }
+
+  .title-line {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-form {
+    padding: 1.75rem;
+  }
+
+  .email-card-content {
+    flex-wrap: wrap;
+  }
+
+  .email-text {
+    flex: 1 1 100%;
+    order: 3;
+    margin-top: 0.5rem;
+  }
+
+  .email-arrow {
+    margin-left: auto;
+  }
+}

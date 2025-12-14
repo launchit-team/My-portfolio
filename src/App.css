@@ -1,0 +1,89 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #3582FEaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #3582FEaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* small layout helpers and shared utilities */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.section { padding: 3rem 0; color: #0f1724 }
+
+/* Button with primary gradient */
+.btn { 
+  display: inline-block; 
+  padding: 0.5rem 0.9rem; 
+  border-radius: 6px;
+  background: linear-gradient(99.28deg, #3582FE 2.15%, #173590 97.85%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(53, 130, 254, 0.3);
+}
+
+/* Accent button variant */
+.btn-accent {
+  background: linear-gradient(135deg, #64ffda 0%, #14b8a6 100%);
+  color: #0a0f1a;
+}
+
+/* Secondary/outline button */
+.btn-outline {
+  background: transparent;
+  border: 2px solid #3582FE;
+  color: #3582FE;
+}
+
+.btn-outline:hover {
+  background: #3582FE;
+  color: white;
+}
+
