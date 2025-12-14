@@ -158,6 +158,23 @@ export default function Hero() {
 
       {/* Tagline replacing stats */}
       <div className="hero-bottom-tagline">
+        {/* Magnifier layer: zoomed view of what's behind the tagline */}
+        <div className="tagline-magnifier" aria-hidden="true">
+          <div className="tagline-magnifier-visual">
+            <div className="shape-bg"></div>
+            <img
+              src="/person.png"
+              alt=""
+              className="person tagline-magnifier-person"
+              style={personStyle}
+            />
+
+            <img src={`${iconsBase}/Adobe.png`} alt="" className="icon icon-1 tagline-magnifier-icon" style={getIconStyle(3)} />
+            <img src={`${iconsBase}/capcut.png`} alt="" className="icon icon-2 tagline-magnifier-icon" style={getIconStyle(2)} />
+            <img src={`${iconsBase}/editing.png`} alt="" className="icon icon-3 tagline-magnifier-icon" style={getIconStyle(1)} />
+            <img src={`${iconsBase}/video.png`} alt="" className="icon icon-4 tagline-magnifier-icon" style={getIconStyle(4)} />
+          </div>
+        </div>
         <p>Hi, I’m Sami , a creative professional specializing in video editing and web development. I craft engaging videos and clean, functional websites, combining technical skills with creativity to bring ideas to life.</p>
       </div>
 
