@@ -173,10 +173,6 @@ const Services = () => {
                 </div>
               </div>
             </div>
-            <div className="card-footer">
-              <span>View my work</span>
-              <div className="arrow-link">→</div>
-            </div>
           </div>
         </div>
 
@@ -212,10 +208,6 @@ const Services = () => {
                   <p>Complex functional web software</p>
                 </div>
               </div>
-            </div>
-            <div className="card-footer">
-              <span>Start a project</span>
-              <div className="arrow-link">→</div>
             </div>
           </div>
         </div>

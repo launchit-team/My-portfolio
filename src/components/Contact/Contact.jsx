@@ -1,5 +1,7 @@
+
 import React, { useState, useEffect } from 'react'
 import './Contact.css'
+import emailjs from '@emailjs/browser'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -9,6 +11,7 @@ export default function Contact() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 })
+  const [formMessage, setFormMessage] = useState({ type: '', text: '' })
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -31,11 +34,32 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault()
     setIsSubmitting(true)
-    setTimeout(() => {
-      console.log('Form submitted:', formData)
-      setFormData({ name: '', email: '', message: '' })
-      setIsSubmitting(false)
-    }, 1000)
+    setFormMessage({ type: '', text: '' })
+
+    // Replace these with your actual EmailJS values
+    const SERVICE_ID = 'service_l27gciw';
+    const TEMPLATE_ID = 'template_upuqc3x';
+    const PUBLIC_KEY = 'm8EqVxAfEurm8Tc52';
+
+    // Add current date and time
+    const now = new Date();
+    const dataToSend = {
+      ...formData,
+      date: now.toLocaleDateString(),
+      time: now.toLocaleTimeString()
+    };
+
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, dataToSend, PUBLIC_KEY)
+      .then((result) => {
+        setFormData({ name: '', email: '', message: '' })
+        setIsSubmitting(false)
+        setFormMessage({ type: 'success', text: 'Message sent successfully!' })
+      })
+      .catch((error) => {
+        setIsSubmitting(false)
+        setFormMessage({ type: 'error', text: 'Failed to send message. Please try again later.' })
+        console.error('EmailJS error:', error)
+      })
   }
 
   return (
@@ -156,6 +180,11 @@ export default function Contact() {
                 </svg>
               </span>
             </button>
+            {formMessage.text && (
+              <div className={`form-message ${formMessage.type}`} style={{ marginTop: '1rem', color: formMessage.type === 'success' ? '#2ecc40' : '#ff4136', textAlign: 'center' }}>
+                {formMessage.text}
+              </div>
+            )}
           </form>
         </div>
       </div>

@@ -1,10 +1,10 @@
 /* --- Contact Section Color Variables (Coral/Orange accent as contrast) --- */
 .contact {
-  --section-accent: #ff6b35;          /* Coral - warm contrast to blue */
-  --section-accent-secondary: #ff3366; /* Pink secondary */
-  --section-accent-cool: #00dcc0;      /* Teal for balance */
-  --section-primary: #3582FE;          /* Primary blue when needed */
-  --section-primary-dark: #173590;
+  --section-accent: #ff6b35;
+  --section-accent-secondary: #ff3366;
+  --section-accent-cool: #ff2e55;
+  --section-primary: #ff4b2b;
+  --section-primary-dark: #b31237;
   position: relative;
   min-height: 100vh;
   display: flex;
@@ -36,7 +36,7 @@
       rgba(255, 0, 128, 0.12) 0%, 
       transparent 50%),
     radial-gradient(ellipse 50% 60% at 80% 20%, 
-      rgba(0, 255, 200, 0.1) 0%, 
+      rgba(255, 60, 120, 0.1) 0%, 
       transparent 50%);
   transition: background 0.3s ease;
 }
@@ -47,7 +47,7 @@
       rgba(255, 200, 50, 0.08) 0%, 
       transparent 40%),
     radial-gradient(circle at 30% 30%, 
-      rgba(120, 0, 255, 0.1) 0%, 
+      rgba(255, 40, 120, 0.1) 0%, 
       transparent 40%);
   animation: meshMove 20s ease-in-out infinite;
 }
@@ -58,7 +58,7 @@
       transparent 0deg, 
       rgba(255, 100, 50, 0.03) 60deg, 
       transparent 120deg,
-      rgba(0, 200, 255, 0.03) 180deg,
+      rgba(255, 40, 120, 0.03) 180deg,
       transparent 240deg,
       rgba(255, 50, 150, 0.03) 300deg,
       transparent 360deg);
@@ -88,8 +88,8 @@
     transparent,
     rgba(255, 90, 50, 0.03),
     rgba(255, 50, 150, 0.05),
-    rgba(100, 50, 255, 0.03),
-    rgba(0, 200, 200, 0.04),
+    rgba(255, 40, 120, 0.03),
+    rgba(255, 120, 50, 0.04),
     transparent
   );
   filter: blur(60px);
@@ -128,7 +128,7 @@
 }
 
 .particle:nth-child(3n) {
-  background: rgba(0, 220, 180, 0.4);
+  background: rgba(255, 80, 120, 0.45);
 }
 
 @keyframes particleRise {
@@ -170,7 +170,7 @@
   top: 50%;
   right: 0;
   width: 40%;
-  background: linear-gradient(90deg, transparent, rgba(0, 220, 200, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 60, 120, 0.5), transparent);
   animation-delay: -3s;
 }
 
@@ -228,7 +228,7 @@
 .deco-dot {
   width: 8px;
   height: 8px;
-  background: #00dcc0;
+  background: var(--section-accent-secondary);
   border-radius: 50%;
   animation: pulse 2s ease-in-out infinite;
 }
@@ -253,7 +253,7 @@
 
 .title-highlight {
   font-weight: 700;
-  background: linear-gradient(135deg, #ff6b35 0%, #ff3366 50%, #00dcc0 100%);
+  background: linear-gradient(135deg, var(--section-accent) 0%, var(--section-accent-secondary) 50%, var(--section-accent-cool) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -430,7 +430,7 @@
 .form-group textarea:not(:placeholder-shown) ~ label {
   top: 0;
   font-size: 0.75rem;
-  color: #3582FE;
+  color: var(--section-accent-secondary);
   letter-spacing: 0.05em;
 }
 
@@ -440,7 +440,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #3582FE, #173590);
+  background: linear-gradient(90deg, var(--section-accent), var(--section-primary-dark));
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -468,7 +468,7 @@
 .btn-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(99.28deg, #3582FE 2.15%, #173590 97.85%);
+  background: linear-gradient(99.28deg, var(--section-accent) 2.15%, var(--section-primary-dark) 97.85%);
   border-radius: 16px;
   transition: all 0.4s ease;
 }

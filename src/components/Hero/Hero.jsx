@@ -12,7 +12,7 @@ const FINAL_POSITIONS = {
   // TranslateX(px), TranslateY(px), Scale, Rotation(deg)
   // Left icons rotate negative (counter-clockwise), right icons rotate positive (clockwise)
   1: [-550, -100, 1.15, -15],  // Left - rotates left
-  2: [-420, -420, 1.15, -10],  // Left - rotates left  
+  2: [-420, -370, 1.15, -10],  // Left - rotates left  
   3: [300, -380, 1.15, 10],    // Right - rotates right
   4: [450, -100, 1.15, 15],    // Right - rotates right
 }
@@ -122,24 +122,30 @@ export default function Hero() {
 
   return (
     <section id="home" className="hero" ref={heroRef}>
-      {/* Mobile Warning Overlay */}
-      <div className="mobile-warning-overlay">
-        <div className="mobile-warning-content">
-          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-            <line x1="12" y1="18" x2="12.01" y2="18"></line>
-          </svg>
-          <h2>Desktop Experience Recommended</h2>
-          <p>For the best viewing experience, please visit this portfolio on a larger screen (desktop or tablet landscape mode).</p>
-          <p className="small-text">This portfolio features interactive animations and designs optimized for wider displays.</p>
-        </div>
-      </div>
+
 
       <div className="hero-content container" ref={contentRef} style={contentStyle}>
         <div className="hero-top">
           <button className="hello-btn">Hello!</button>
           <h1 className="hero-name">I'm Sami,<br/><span className="typing-text">{displayText}<span className="cursor">|</span></span></h1>
-          
+        </div>
+        
+        {/* Mobile tagline */}
+        <p className="hero-tagline mobile-only">
+          A creative professional specializing in video editing and web development. I craft engaging videos and clean, functional websites.
+        </p>
+      </div>
+
+      {/* Mobile visual elements */}
+      <div className="mobile-visuals mobile-only">
+        <div className="mobile-decoration mobile-decoration-1"></div>
+        <div className="mobile-decoration mobile-decoration-2"></div>
+        <div className="mobile-decoration mobile-decoration-3"></div>
+        <div className="mobile-icon-grid">
+          <img src="/icons/Adobe-mob.png" alt="" className="mobile-icon" />
+          <img src="/icons/react.png" alt="" className="mobile-icon" />
+          <img src="/icons/cut.png" alt="" className="mobile-icon" />
+          <img src="/icons/code.png" alt="" className="mobile-icon" />
         </div>
       </div>
 
@@ -157,7 +163,7 @@ export default function Hero() {
       </div>
 
       {/* Tagline replacing stats */}
-      <div className="hero-bottom-tagline">
+      <div className="hero-bottom-tagline desktop-only">
         {/* Magnifier layer: zoomed view of what's behind the tagline */}
         <div className="tagline-magnifier" aria-hidden="true">
           <div className="tagline-magnifier-visual">
@@ -170,7 +176,7 @@ export default function Hero() {
             />
 
             <img src={`${iconsBase}/Adobe.png`} alt="" className="icon icon-1 tagline-magnifier-icon" style={getIconStyle(3)} />
-            <img src={`${iconsBase}/capcut.png`} alt="" className="icon icon-2 tagline-magnifier-icon" style={getIconStyle(2)} />
+            <img src={`${iconsBase}/cut.png`} alt="" className="icon icon-2 tagline-magnifier-icon" style={getIconStyle(2)} />
             <img src={`${iconsBase}/editing.png`} alt="" className="icon icon-3 tagline-magnifier-icon" style={getIconStyle(1)} />
             <img src={`${iconsBase}/video.png`} alt="" className="icon icon-4 tagline-magnifier-icon" style={getIconStyle(4)} />
           </div>
@@ -178,11 +184,11 @@ export default function Hero() {
         <p>Hi, I’m Sami , a creative professional specializing in video editing and web development. I craft engaging videos and clean, functional websites, combining technical skills with creativity to bring ideas to life.</p>
       </div>
 
-      <div className="hero-visual">
+      <div className="hero-visual desktop-only">
         <div className="shape-bg"></div> 
         <img 
-          src="/person.png" 
-          alt="Sami" 
+          src="/person.png"
+          alt="Sami"
           className="person" 
           style={personStyle}
         />

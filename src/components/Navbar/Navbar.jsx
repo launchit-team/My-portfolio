@@ -7,7 +7,10 @@ export default function Navbar() {
   const [isHovered, setIsHovered] = useState(false)
   const [activeLink, setActiveLink] = useState('home')
   const [scrolled, setScrolled] = useState(false)
-  const [isClickScrolling, setIsClickScrolling] = useState(false) 
+  const [isClickScrolling, setIsClickScrolling] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [navHidden, setNavHidden] = useState(false)
+  const lastScrollY = useRef(0)
   
   // Ref for the slider element and the inner container
   const sliderRef = useRef(null); 
@@ -61,7 +64,20 @@ export default function Navbar() {
     
 
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+      const currentScrollY = window.scrollY;
+      
+      setScrolled(currentScrollY > 50)
+
+      // Hide/show navbar based on scroll direction
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        // Scrolling down & past threshold - hide navbar
+        setNavHidden(true);
+      } else {
+        // Scrolling up - show navbar
+        setNavHidden(false);
+      }
+      
+      lastScrollY.current = currentScrollY;
 
       if (isClickScrolling) {
         return 
@@ -106,6 +122,7 @@ export default function Navbar() {
     
     setActiveLink(id) // Set active link immediately on click
     updateSlider(id); // Update slider position immediately
+    setMobileMenuOpen(false); // Close mobile menu on click
     
     const element = document.getElementById(id)
     if (element) {
@@ -156,8 +173,30 @@ export default function Navbar() {
     return activeLink === linkName ? 'active-text' : '' 
   }
 
+  // Toggle mobile menu
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  }
+
+  // Close mobile menu when clicking outside
+  const handleOverlayClick = () => {
+    setMobileMenuOpen(false);
+  }
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   return (
-    <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <header className={`navbar ${scrolled ? 'scrolled' : ''} ${navHidden && !mobileMenuOpen ? 'hidden' : ''}`}>
       <div className="nav-inner" ref={navInnerRef}>
         
         {/* The Sliding Background Element */}
@@ -222,7 +261,59 @@ export default function Navbar() {
             id="nav-link-contact" 
           >Contact</a>
         </nav>
+
+        {/* Mobile Menu Button */}
+        <button 
+          className={`mobile-menu-btn ${mobileMenuOpen ? 'open' : ''}`}
+          onClick={toggleMobileMenu}
+          aria-label="Toggle menu"
+          aria-expanded={mobileMenuOpen}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
+
+      {/* Mobile Overlay */}
+      <div 
+        className={`mobile-overlay ${mobileMenuOpen ? 'visible' : ''}`}
+        onClick={handleOverlayClick}
+      ></div>
+
+      {/* Mobile Menu Panel */}
+      <nav className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
+        {/* Mobile Menu Header with Logo */}
+        <div className="mobile-menu-header">
+          <div className="brand-logo">
+            <img src="/logo.png" alt="Sami" width="40" height="40" />
+          </div>
+          <span className="mobile-brand-text">SAMI</span>
+        </div>
+        
+        <div className="mobile-nav-links">
+          <a 
+            href="#home" 
+            onClick={(e) => handleNavClick(e, 'home')} 
+            className={getLinkClass('home')}
+          >Home</a>
+          <a 
+            href="#services" 
+            onClick={(e) => handleNavClick(e, 'services')} 
+            className={getLinkClass('services')}
+          >Services</a>
+          <a 
+            href="#experience" 
+            onClick={(e) => handleNavClick(e, 'experience')} 
+            className={getLinkClass('experience')}
+          >Experience</a>
+          <a 
+            href="#contact" 
+            onClick={(e) => handleNavClick(e, 'contact')} 
+            className={getLinkClass('contact')}
+          >Contact</a>
+        </div>
+      </nav>
     </header>
   )
 }
