@@ -662,53 +662,7 @@
   75% { transform: translate(8px, 5px) scale(1.02); }
 }
 
-/* Mobile icon grid */
-.mobile-icon-grid {
-  position: absolute;
-  bottom: 12%;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 1.25rem 2rem;
-  background: rgba(255, 255, 255, 0.75); /* Increased opacity for Safari */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 
-    0 8px 32px rgba(53, 130, 254, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  /* Mobile Safari fixes */
-  -webkit-transform: translateX(-50%) translateZ(0);
-  will-change: transform;
-  isolation: isolate;
-}
 
-.mobile-icon {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-  transition: transform 0.3s ease;
-}
-
-.mobile-icon:nth-child(1) { animation: iconZoom 3s ease-in-out infinite; }
-.mobile-icon:nth-child(2) { animation: iconSpin 8s linear infinite; }
-.mobile-icon:nth-child(3) { animation: iconZoom 3.5s ease-in-out infinite 1s; }
-.mobile-icon:nth-child(4) { animation: iconZoom 4s ease-in-out infinite 1.5s; }
-
-@keyframes iconZoom {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
-}
-
-@keyframes iconSpin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
 
 @media (max-width: 768px) {
   /* Hide desktop-only elements on mobile */
@@ -867,20 +821,7 @@
     pointer-events: none;
   }
   
-  .mobile-icon-grid {
-    bottom: calc(6rem + var(--safe-area-inset-bottom));
-    gap: 1rem;
-    padding: 1rem 1.5rem;
-    pointer-events: auto;
-    /* Ensure it doesn't get cut off on small screens */
-    max-width: calc(100vw - 2rem);
-    margin: 0 1rem;
-  }
-  
-  .mobile-icon {
-    width: 42px;
-    height: 42px;
-  }
+
   
   /* Adjust decorations for tablet */
   .mobile-decoration-1 {
@@ -973,20 +914,5 @@
     right: 5%;
   }
   
-  .mobile-icon-grid {
-    bottom: calc(6rem + var(--safe-area-inset-bottom));
-    gap: 0.875rem;
-    padding: 0.875rem 1.25rem;
-    border-radius: 18px;
-    /* Better positioning for small screens */
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto;
-    max-width: calc(100vw - 2.5rem);
-  }
-  
-  .mobile-icon {
-    width: 36px;
-    height: 36px;
-  }
+
 }

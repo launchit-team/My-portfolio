@@ -141,12 +141,6 @@ export default function Hero() {
         <div className="mobile-decoration mobile-decoration-1"></div>
         <div className="mobile-decoration mobile-decoration-2"></div>
         <div className="mobile-decoration mobile-decoration-3"></div>
-        <div className="mobile-icon-grid">
-          <img src="/icons/Adobe-mob.png" alt="" className="mobile-icon" />
-          <img src="/icons/react.png" alt="" className="mobile-icon" />
-          <img src="/icons/cut.png" alt="" className="mobile-icon" />
-          <img src="/icons/code.png" alt="" className="mobile-icon" />
-        </div>
       </div>
 
       {/* CTA Buttons - Moved to be near tagline */}
