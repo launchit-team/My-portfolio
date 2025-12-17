@@ -488,7 +488,7 @@
 .person {
   position: relative;
   z-index: 5;
-  height: 85%;
+  height: 95%;
   width: auto;
   max-width: 90%;
   object-fit: contain;
@@ -574,7 +574,7 @@
   }
   
   .person {
-    height: 80%;
+    height: 90%;
   }
 
   .typing-text {
@@ -870,7 +870,7 @@
   }
   
   .hero-name {
-    font-size: clamp(2.2rem, 9vw, 2.6rem);
+    font-size: clamp(3rem, 9vw, 2.6rem);
   }
 
   .typing-text {
@@ -900,7 +900,7 @@
   
   .hello-btn {
     padding: 0.4rem 1rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
   
   /* Smaller decorations for small screens */
