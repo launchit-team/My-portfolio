@@ -6,6 +6,10 @@
   --primary-gradient: linear-gradient(135deg, #3582FE 0%, #173590 100%);
   --primary-gradient-hover: linear-gradient(135deg, #5a9bff 0%, #3582FE 100%);
   
+  /* === MOBILE SAFARI FIXES === */
+  --safe-area-inset-top: env(safe-area-inset-top, 0px);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+  
   /* === SECTION ACCENT COLORS === */
   --accent-cyan: #06b6d4;            /* Hero section accent */
   --accent-teal: #64ffda;            /* Services section accent */
@@ -42,7 +46,7 @@
   position: relative;
   height: 100vh;
   height: 100dvh; /* Dynamic viewport height for mobile */
-  min-height: 0;
+  min-height: 600px; /* Minimum height for small screens */
   max-height: none;
   background: var(--bg-gradient);
   overflow: hidden;
@@ -50,8 +54,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 7rem;
+  padding-top: calc(7rem + var(--safe-area-inset-top));
+  padding-bottom: var(--safe-area-inset-bottom);
   box-sizing: border-box;
+  /* Mobile Safari fixes */
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Animated gradient orbs */
@@ -124,6 +133,11 @@
   cursor: default;
   box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.5);
   animation: floatBadge 4s ease-in-out infinite;
+  /* Mobile Safari fixes */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .hello-btn::before {
@@ -154,6 +168,12 @@
   line-height: 1.05;
   font-weight: 900;
   letter-spacing: -0.04em;
+  /* Mobile Safari typography fixes */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .hero-name span {
@@ -654,7 +674,7 @@
   align-items: center;
   gap: 1.5rem;
   padding: 1.25rem 2rem;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.75); /* Increased opacity for Safari */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 24px;
@@ -662,6 +682,10 @@
   box-shadow: 
     0 8px 32px rgba(53, 130, 254, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  /* Mobile Safari fixes */
+  -webkit-transform: translateX(-50%) translateZ(0);
+  will-change: transform;
+  isolation: isolate;
 }
 
 .mobile-icon {
@@ -699,17 +723,23 @@
   }
   
   .hero {
-    padding-top: 5rem;
-    padding-bottom: 6rem;
+    padding-top: calc(5rem + var(--safe-area-inset-top));
+    padding-bottom: calc(6rem + var(--safe-area-inset-bottom));
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     min-height: 100dvh;
+    /* Fallback for older mobile browsers */
+    min-height: calc(100vh - var(--safe-area-inset-top) - var(--safe-area-inset-bottom));
     background: 
       radial-gradient(ellipse 80% 50% at 50% 100%, rgba(53, 130, 254, 0.08) 0%, transparent 50%),
       radial-gradient(ellipse 60% 40% at 80% 20%, rgba(139, 92, 246, 0.06) 0%, transparent 40%),
       radial-gradient(ellipse 50% 30% at 20% 80%, rgba(6, 182, 212, 0.06) 0%, transparent 35%),
       linear-gradient(180deg, #f8fafc 0%, #e0f2fe 40%, #dbeafe 100%);
+    /* Enhanced mobile performance */
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    will-change: transform;
   }
   
   /* Mobile gradient orbs - enhanced */
@@ -758,7 +788,7 @@
   
   .hero-tagline.mobile-only {
     display: block !important;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.85); /* Increased opacity for Safari fallback */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     padding: 1.25rem 1.5rem;
@@ -769,6 +799,11 @@
       0 2px 8px rgba(0, 0, 0, 0.04),
       inset 0 1px 0 rgba(255, 255, 255, 0.6);
     position: relative;
+    /* Mobile Safari fixes */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    isolation: isolate;
+    transform: translateZ(0); /* Force hardware acceleration */
   }
   
   .hello-btn {
@@ -807,6 +842,13 @@
     border-radius: 14px;
     width: 100%;
     box-sizing: border-box;
+    /* Mobile touch improvements */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+    min-height: 48px; /* iOS accessibility guideline */
   }
   
   .cta-btn.primary {
@@ -815,6 +857,8 @@
   
   .cta-btn.secondary {
     background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1.5px solid rgba(53, 130, 254, 0.25);
   }
   
@@ -825,10 +869,13 @@
   }
   
   .mobile-icon-grid {
-    bottom: 6rem;
+    bottom: calc(6rem + var(--safe-area-inset-bottom));
     gap: 1rem;
     padding: 1rem 1.5rem;
     pointer-events: auto;
+    /* Ensure it doesn't get cut off on small screens */
+    max-width: calc(100vw - 2rem);
+    margin: 0 1rem;
   }
   
   .mobile-icon {
@@ -861,8 +908,10 @@
 
 @media (max-width: 480px) {
   .hero {
-    padding-top: 4rem;
-    padding-bottom: 5rem;
+    padding-top: calc(4rem + var(--safe-area-inset-top));
+    padding-bottom: calc(5rem + var(--safe-area-inset-bottom));
+    /* Ensure minimum usable height */
+    min-height: max(100vh, 600px);
   }
   
   .hero-content {
@@ -926,10 +975,15 @@
   }
   
   .mobile-icon-grid {
-    bottom: 6rem;
+    bottom: calc(6rem + var(--safe-area-inset-bottom));
     gap: 0.875rem;
     padding: 0.875rem 1.25rem;
     border-radius: 18px;
+    /* Better positioning for small screens */
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: calc(100vw - 2.5rem);
   }
   
   .mobile-icon {
