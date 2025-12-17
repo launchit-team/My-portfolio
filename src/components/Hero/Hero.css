@@ -59,7 +59,6 @@
   box-sizing: border-box;
   /* Mobile Safari fixes */
   -webkit-overflow-scrolling: touch;
-  -webkit-transform: translateZ(0);
   backface-visibility: hidden;
 }
 
