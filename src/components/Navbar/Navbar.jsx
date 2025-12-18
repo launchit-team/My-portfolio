@@ -68,12 +68,18 @@ export default function Navbar() {
       
       setScrolled(currentScrollY > 50)
 
-      // Hide/show navbar based on scroll direction
-      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-        // Scrolling down & past threshold - hide navbar
-        setNavHidden(true);
+      // Hide/show navbar based on scroll direction (only on mobile)
+      const isMobile = window.innerWidth <= 768;
+      if (isMobile) {
+        if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+          // Scrolling down & past threshold - hide navbar
+          setNavHidden(true);
+        } else {
+          // Scrolling up - show navbar
+          setNavHidden(false);
+        }
       } else {
-        // Scrolling up - show navbar
+        // Always show navbar on desktop
         setNavHidden(false);
       }
       
