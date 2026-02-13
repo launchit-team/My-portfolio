@@ -163,16 +163,16 @@ export default function Hero() {
           <div className="tagline-magnifier-visual">
             <div className="shape-bg"></div>
             <img
-              src="/person.png"
+              src="/person.webp"
               alt=""
               className="person tagline-magnifier-person"
               style={personStyle}
             />
 
-            <img src={`${iconsBase}/Adobe.png`} alt="" className="icon icon-1 tagline-magnifier-icon" style={getIconStyle(3)} />
-            <img src={`${iconsBase}/cut.png`} alt="" className="icon icon-2 tagline-magnifier-icon" style={getIconStyle(2)} />
-            <img src={`${iconsBase}/editing.png`} alt="" className="icon icon-3 tagline-magnifier-icon" style={getIconStyle(1)} />
-            <img src={`${iconsBase}/video.png`} alt="" className="icon icon-4 tagline-magnifier-icon" style={getIconStyle(4)} />
+            <img src={`${iconsBase}/Adobe.webp`} alt="" className="icon icon-1 tagline-magnifier-icon" style={getIconStyle(3)} />
+            <img src={`${iconsBase}/cut.webp`} alt="" className="icon icon-2 tagline-magnifier-icon" style={getIconStyle(2)} />
+            <img src={`${iconsBase}/editing.webp`} alt="" className="icon icon-3 tagline-magnifier-icon" style={getIconStyle(1)} />
+            <img src={`${iconsBase}/video.webp`} alt="" className="icon icon-4 tagline-magnifier-icon" style={getIconStyle(4)} />
           </div>
         </div>
         <p>Hi, I’m Sami , a creative professional specializing in video editing and web development. I craft engaging videos and clean, functional websites, combining technical skills with creativity to bring ideas to life.</p>
@@ -181,17 +181,17 @@ export default function Hero() {
       <div className="hero-visual desktop-only">
         <div className="shape-bg"></div> 
         <img 
-          src="/person.png"
+          src="/person.webp"
           alt="Sami"
           className="person" 
           style={personStyle}
         />
 
         {/* Floating icons with scroll animation */}
-        <img src={`${iconsBase}/Adobe.png`} alt="Adobe Premiere Pro" className="icon icon-1" style={getIconStyle(3)} />
-        <img src={`${iconsBase}/capcut.png`} alt="CapCut" className="icon icon-2" style={getIconStyle(2)} />
-        <img src={`${iconsBase}/editing.png`} alt="Editing Tools" className="icon icon-3" style={getIconStyle(1)} />
-        <img src={`${iconsBase}/video.png`} alt="Video Cut" className="icon icon-4" style={getIconStyle(4)} />
+        <img src={`${iconsBase}/Adobe.webp`} alt="Adobe Premiere Pro" className="icon icon-1" style={getIconStyle(3)} />
+        <img src={`${iconsBase}/capcut.webp`} alt="CapCut" className="icon icon-2" style={getIconStyle(2)} />
+        <img src={`${iconsBase}/editing.webp`} alt="Editing Tools" className="icon icon-3" style={getIconStyle(1)} />
+        <img src={`${iconsBase}/video.webp`} alt="Video Cut" className="icon icon-4" style={getIconStyle(4)} />
       </div>
 
       {/* Scroll indicator */}

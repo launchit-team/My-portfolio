@@ -236,7 +236,7 @@ export default function Navbar() {
         >
           <div className="brand-logo">
             {/* NOTE: You need a logo.svg file in a public/Shape folder or update the src */}
-            <img src="/logo.png" alt="Sami" width="28" height="28" />
+            <img src="/logo.webp" alt="Sami" width="28" height="28" />
           </div>
           
           <div className="brand-text-container">
@@ -292,7 +292,7 @@ export default function Navbar() {
         {/* Mobile Menu Header with Logo */}
         <div className="mobile-menu-header">
           <div className="brand-logo">
-            <img src="/logo.png" alt="Sami" width="40" height="40" />
+            <img src="/logo.webp" alt="Sami" width="40" height="40" />
           </div>
           <span className="mobile-brand-text">SAMI</span>
         </div>
