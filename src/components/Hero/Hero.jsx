@@ -127,7 +127,7 @@ export default function Hero() {
       <div className="hero-content container" ref={contentRef} style={contentStyle}>
         <div className="hero-top">
           <button className="hello-btn">Hello!</button>
-          <h1 className="hero-name">I'm Sami,<br/><span className="typing-text">{displayText}<span className="cursor">|</span></span></h1>
+          <h1 className="hero-name">I'm Samy,<br/><span className="typing-text">{displayText}<span className="cursor">|</span></span></h1>
         </div>
         
         {/* Mobile tagline */}
@@ -175,14 +175,14 @@ export default function Hero() {
             <img src={`${iconsBase}/video.webp`} alt="" className="icon icon-4 tagline-magnifier-icon" style={getIconStyle(4)} />
           </div>
         </div>
-        <p>Hi, I’m Sami , a creative professional specializing in video editing and web development. I craft engaging videos and clean, functional websites, combining technical skills with creativity to bring ideas to life.</p>
+        <p>Hi, I’m Samy , a creative professional specializing in video editing and web development. I craft engaging videos and clean, functional websites, combining technical skills with creativity to bring ideas to life.</p>
       </div>
 
       <div className="hero-visual desktop-only">
         <div className="shape-bg"></div> 
         <img 
           src="/person.webp"
-          alt="Sami"
+          alt="Samy"
           className="person" 
           style={personStyle}
         />

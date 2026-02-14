@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="footer-content">
         <div className="footer-left">
-          <p className="footer-copyright">© {new Date().getFullYear()} SAMI Creative. Ideas in motion.</p>
+          <p className="footer-copyright">© {new Date().getFullYear()} SAMY Creative. Ideas in motion.</p>
         </div>
         <div className="footer-right">
           <p className="footer-madeWith">

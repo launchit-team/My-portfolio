@@ -50,7 +50,7 @@ export default function Experience() {
           {/* Education */}
           <div className="journey-block reverse">
             <div className="journey-info">
-              <span className="journey-year">2021 — 2026</span>
+              <span className="journey-year">2022 — 2027</span>
               <h3 className="journey-title">Software Engineering</h3>
               <p className="journey-desc">
                 Pursuing my degree at an international university, combining theoretical 
@@ -70,7 +70,7 @@ export default function Experience() {
                   <circle className="ring-progress" cx="60" cy="60" r="54"/>
                 </svg>
                 <div className="progress-content">
-                  <span className="progress-percent">80%</span>
+                  <span className="progress-percent">75%</span>
                   <span className="progress-text">Complete</span>
                 </div>
               </div>

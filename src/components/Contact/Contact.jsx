@@ -104,7 +104,7 @@ export default function Contact() {
             </p>
           </div>
 
-          <a href="mailto:launchit.dev.team@gmail.com" className="email-card">
+          <a href="mailto:liveclipzs@gmail.com" className="email-card">
             <div className="email-card-glow"></div>
             <div className="email-card-content">
               <div className="email-icon-wrap">
@@ -114,7 +114,7 @@ export default function Contact() {
               </div>
               <div className="email-text">
                 <span className="email-label">Get in touch</span>
-                <span className="email-address">launchit.dev.team@gmail.com</span>
+                <span className="email-address">liveclipzs@gmail.com</span>
               </div>
               <div className="email-arrow">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

@@ -236,18 +236,18 @@ export default function Navbar() {
         >
           <div className="brand-logo">
             {/* NOTE: You need a logo.svg file in a public/Shape folder or update the src */}
-            <img src="/logo.webp" alt="Sami" width="28" height="28" />
+            <img src="/logo.webp" alt="Samy" width="28" height="28" />
           </div>
           
           <div className="brand-text-container">
             <div className={`text-state default-text ${!isHovered ? 'visible' : ''}`}>
-              SAMI
+              SAMY
             </div>
             
             <div className={`text-state hover-text ${isHovered ? 'visible' : ''}`}>
               <span>made by</span>
               {/* Simple fade/slide animation for the second line */}
-              <span className={`brand-hover-text-simple${isHovered ? ' visible' : ''}`}>Sami Creative</span>
+              <span className={`brand-hover-text-simple${isHovered ? ' visible' : ''}`}>Samy Creative</span>
             </div>
           </div>
         </div>
@@ -292,9 +292,9 @@ export default function Navbar() {
         {/* Mobile Menu Header with Logo */}
         <div className="mobile-menu-header">
           <div className="brand-logo">
-            <img src="/logo.webp" alt="Sami" width="40" height="40" />
+            <img src="/logo.webp" alt="Samy" width="40" height="40" />
           </div>
-          <span className="mobile-brand-text">SAMI</span>
+          <span className="mobile-brand-text">SAMY</span>
         </div>
         
         <div className="mobile-nav-links">
