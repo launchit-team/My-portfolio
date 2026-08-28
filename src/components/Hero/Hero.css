@@ -48,7 +48,7 @@
   height: 100dvh; /* Dynamic viewport height for mobile */
   min-height: 600px; /* Minimum height for small screens */
   max-height: none;
-  background: url('/Background/hero-bg.png');
+  background: url('/Background/hero-bg.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -355,7 +355,7 @@
     min-height: 100dvh;
     /* Fallback for older mobile browsers */
     min-height: calc(100vh - var(--safe-area-inset-top) - var(--safe-area-inset-bottom));
-    background: url('/Background/hero-bg-mobile.png');
+    background: url('/Background/hero-bg-mobile.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
