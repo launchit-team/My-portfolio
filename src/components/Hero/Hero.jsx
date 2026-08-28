@@ -1,27 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './Hero.css'
 
-// Easing function for smooth animation
-const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3)
-
 // Typing animation words
 const TYPING_WORDS = ['Video Editor', 'Web Developer', 'Content Creator']
-
-// Define the final (destination) positions for the icons
-const FINAL_POSITIONS = {
-  // TranslateX(px), TranslateY(px), Scale, Rotation(deg)
-  // Left icons rotate negative (counter-clockwise), right icons rotate positive (clockwise)
-  1: [-550, -100, 1.15, -15],  // Left - rotates left
-  2: [-420, -370, 1.15, -10],  // Left - rotates left  
-  3: [300, -380, 1.15, 10],    // Right - rotates right
-  4: [450, -100, 1.15, 15],    // Right - rotates right
-}
-
-// Function to calculate the interpolated value with easing
-const interpolate = (start, end, progress) => {
-  const easedProgress = easeOutCubic(progress)
-  return start + (end - start) * easedProgress
-}
 
 export default function Hero() {
   const heroRef = useRef(null)
@@ -95,103 +76,31 @@ export default function Hero() {
     opacity: 1 - scrollProgress * 0.8, 
   }
 
-
-
-  // Style for the person image - subtle parallax
-  const personStyle = {
-    transform: `translateY(${scrollProgress * 30}px) scale(${1 + scrollProgress * 0.05})`,
-  }
-
-  // Function to generate the dynamic style for each icon
-  const getIconStyle = (iconNumber) => {
-    const [finalX, finalY, finalScale, finalRotation] = FINAL_POSITIONS[iconNumber]
-
-    const currentX = interpolate(0, finalX, scrollProgress)
-    const currentY = interpolate(0, finalY, scrollProgress)
-    const currentScale = interpolate(1, finalScale, scrollProgress)
-    const currentRotation = interpolate(0, finalRotation, scrollProgress)
-    const currentOpacity = interpolate(0.6, 1, scrollProgress)
-    
-    return {
-      transform: `translate(${currentX}px, ${currentY}px) scale(${currentScale}) rotate(${currentRotation}deg)`,
-      opacity: currentOpacity,
-    }
-  }
-
-  const iconsBase = '/icons'
-
   return (
     <section id="home" className="hero" ref={heroRef}>
-
-
-      <div className="hero-content container" ref={contentRef} style={contentStyle}>
-        <div className="hero-top">
-          <button className="hello-btn">Hello!</button>
-          <h1 className="hero-name">I'm Samy,<br/><span className="typing-text">{displayText}<span className="cursor">|</span></span></h1>
+      <div className="hero-content" ref={contentRef} style={contentStyle}>
+        <div className="hero-badge">
+          <span><span className="accent">Hello,</span> I'm Samy</span>
+          <span className="hero-badge-underline"></span>
         </div>
-        
-        {/* Mobile tagline */}
-        <p className="hero-tagline mobile-only">
-          A creative professional specializing in video editing and web development. I craft engaging videos and clean, functional websites.
+
+        <h1 className="hero-name">I'm Samy,<br/><span className="typing-text">{displayText}<span className="cursor">|</span></span></h1>
+
+        <p className="hero-tagline">
+          A creative professional specializing in web development and video editing — crafting engaging videos and clean, functional websites.
         </p>
-      </div>
 
-      {/* Mobile visual elements */}
-      <div className="mobile-visuals mobile-only">
-        <div className="mobile-decoration mobile-decoration-1"></div>
-        <div className="mobile-decoration mobile-decoration-2"></div>
-        <div className="mobile-decoration mobile-decoration-3"></div>
-      </div>
-
-      {/* CTA Buttons - Moved to be near tagline */}
-      <div className="hero-cta">
-        <a href="#services" className="cta-btn primary">
-          <span>View My Work</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </a>
-        <a href="#contact" className="cta-btn secondary">
-          <span>Let's Talk</span>
-        </a>
-      </div>
-
-      {/* Tagline replacing stats */}
-      <div className="hero-bottom-tagline desktop-only">
-        {/* Magnifier layer: zoomed view of what's behind the tagline */}
-        <div className="tagline-magnifier" aria-hidden="true">
-          <div className="tagline-magnifier-visual">
-            <div className="shape-bg"></div>
-            <img
-              src="/person.webp"
-              alt=""
-              className="person tagline-magnifier-person"
-              style={personStyle}
-            />
-
-            <img src={`${iconsBase}/Adobe.webp`} alt="" className="icon icon-1 tagline-magnifier-icon" style={getIconStyle(3)} />
-            <img src={`${iconsBase}/cut.webp`} alt="" className="icon icon-2 tagline-magnifier-icon" style={getIconStyle(2)} />
-            <img src={`${iconsBase}/editing.webp`} alt="" className="icon icon-3 tagline-magnifier-icon" style={getIconStyle(1)} />
-            <img src={`${iconsBase}/video.webp`} alt="" className="icon icon-4 tagline-magnifier-icon" style={getIconStyle(4)} />
-          </div>
+        <div className="hero-cta">
+          <a href="#services" className="cta-btn primary">
+            <span>View My Work</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a href="#contact" className="cta-btn secondary">
+            <span>Let's Talk</span>
+          </a>
         </div>
-        <p>Hi, I’m Samy , a creative professional specializing in video editing and web development. I craft engaging videos and clean, functional websites, combining technical skills with creativity to bring ideas to life.</p>
-      </div>
-
-      <div className="hero-visual desktop-only">
-        <div className="shape-bg"></div> 
-        <img 
-          src="/person.webp"
-          alt="Samy"
-          className="person" 
-          style={personStyle}
-        />
-
-        {/* Floating icons with scroll animation */}
-        <img src={`${iconsBase}/Adobe.webp`} alt="Adobe Premiere Pro" className="icon icon-1" style={getIconStyle(3)} />
-        <img src={`${iconsBase}/capcut.webp`} alt="CapCut" className="icon icon-2" style={getIconStyle(2)} />
-        <img src={`${iconsBase}/editing.webp`} alt="Editing Tools" className="icon icon-3" style={getIconStyle(1)} />
-        <img src={`${iconsBase}/video.webp`} alt="Video Cut" className="icon icon-4" style={getIconStyle(4)} />
       </div>
 
       {/* Scroll indicator */}

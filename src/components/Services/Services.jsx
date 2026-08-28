@@ -154,22 +154,22 @@ const Services = () => {
               <div className="service-item">
                 <span className="item-number">01</span>
                 <div className="item-content">
-                  <h4>Short-Form Content</h4>
-                  <p>Reels, Shorts, TikToks with engaging cuts & text</p>
+                  <h4>Short-Form Specialist</h4>
+                  <p>Instagram Reels, TikTok, and YouTube Shorts</p>
                 </div>
               </div>
               <div className="service-item">
                 <span className="item-number">02</span>
                 <div className="item-content">
-                  <h4>Color Grading</h4>
-                  <p>Cinematic looks that elevate your footage</p>
+                  <h4>Simple, Solid & Professional</h4>
+                  <p>Carefully timed cuts, pacing, and clip selection — no unnecessary effects or overediting</p>
                 </div>
               </div>
               <div className="service-item">
                 <span className="item-number">03</span>
                 <div className="item-content">
-                  <h4>Advanced Techniques</h4>
-                  <p>Multicam, green screen, stabilization & more</p>
+                  <h4>More Time For You</h4>
+                  <p>I take editing off your plate so you can create, grow, or enjoy your free time</p>
                 </div>
               </div>
             </div>
