@@ -1,16 +1,46 @@
-# React + Vite
+# Samy — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Two focused portfolio experiences under one personal brand:
 
-Currently, two official plugins are available:
+- `/video-editing` — short-form editing for content creators
+- `/web-development` — websites, applications, interfaces, and digital products
+- `/` — home, portfolio directions, and experience
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Built with React 19, Vite 7, plain CSS, and EmailJS.
 
-## React Compiler
+## Development
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```sh
+npm ci
+npm run dev
+```
 
-## Expanding the ESLint configuration
+```sh
+npm run lint
+npm run build
+npm run preview
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Vite produces the deployable site in `dist/`. `vercel.json` provides SPA rewrites so both portfolio URLs load directly on Vercel.
+
+## Structure
+
+The three routes use `src/components/Studio.jsx` and `Studio.css`. Home and Video Editing use charcoal and warm neutral accents; Web Development uses ivory and black. Shared navigation includes an About dialog. Contact forms and FAQs live in a native dialog to keep the pages concise.
+
+The video-editing route includes private sample categories and an interactive raw/final workflow illustration with a keyboard-accessible timeline scrubber. The phone and workflow are interface illustrations, not client video or performance evidence. No generated portraits, fake views, or invented client footage are used.
+
+The web-development route contains a project-based laptop hero, a three-card gallery expandable to all six existing projects, category filters, six services, the supplied experience statistics, software-engineering background, web-specific FAQ, and contact form. Project names and descriptions come from the supplied live deployments. Local WebP previews live in `public/projects/`.
+
+The supplied Passage deployment currently renders a blank page. Its preview uses the hero image referenced by that project’s deployed JavaScript rather than a fabricated screenshot.
+
+## Contact integration
+
+`src/components/Contact/Contact.jsx` preserves the existing EmailJS service, template, and public key. The shared form adapts its labels and qualifying fields to each service while retaining required-field validation, duplicate-submission prevention, pending state, accessible feedback, direct email, and draft preservation on failure.
+
+## Verification
+
+- Production build and ESLint pass.
+- `/`, `/video-editing`, and `/web-development` load directly.
+- All three routes were checked at 320, 390, and 1440 pixels with no horizontal overflow.
+- Navigation, portfolio switching, mobile menu behavior, project previews, and all six live-site destinations were checked in Chrome.
+- The video repository contains no public video files; the video route uses an honest private-sample flow until approved work is supplied.

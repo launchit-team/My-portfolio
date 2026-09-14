@@ -1,84 +1,19 @@
-import React from 'react'
 import './Experience.css'
 
+const steps = [
+  ['Send the footage', 'Share your raw files, brief, references, and any brand assets.'],
+  ['I build the edit', 'I review everything, find the strongest moments, and shape the first cut.'],
+  ['Review together', 'You leave clear feedback on the video so revisions stay simple and specific.'],
+  ['Receive post-ready files', 'The approved edit is delivered in the right format for your platforms.'],
+]
+
 export default function Experience() {
-  return (
-    <section id="experience" className="experience">
-      <div className="container">
-        <h2 className="section-title">Experience</h2>
-        <p className="section-subtitle">My journey so far</p>
-        
-        <div className="journey-wrapper">
-          {/* Instagram Achievement */}
-          <div className="journey-block">
-            <div className="journey-visual">
-              <div className="stat-circle" style={{marginBottom: '1.5rem'}}>
-                <span className="stat-number" style={{color: '#fff'}}>317K</span>
-                <span className="stat-label">Followers</span>
-              </div>
-              <div className="growth-line" style={{marginBottom: '2rem'}}>
-                <div className="growth-dot" style={{left: '0%'}}><span style={{marginTop: '10px'}}>0</span></div>
-                <div className="growth-dot milestone" style={{left: '31%'}}><span style={{marginTop: '10px'}}>100K</span></div>
-                <div className="growth-dot current" style={{left: '100%'}}><span style={{marginTop: '10px'}}>317K</span></div>
-                <div className="growth-progress"></div>
-              </div>
-              <p className="growth-time" style={{marginBottom: '1.5rem'}}>100K reached in less than 4 months</p>
-            </div>
-            <div className="journey-info">
-              <span className="journey-year">2023 — Present</span>
-              <h3 className="journey-title">Instagram Page Manager</h3>
-              <p className="journey-desc">
-                Building and managing a thriving Instagram community. Through strategic content 
-                creation, engagement tactics, and consistent growth strategies, I've scaled 
-                the page to over 317K followers.
-              </p>
-              <div className="journey-tags">
-                <span>Content Strategy</span>
-                <span>Growth Hacking</span>
-                <span>Community Building</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="journey-divider">
-            <div className="divider-line"></div>
-            <div className="divider-icon">✦</div>
-            <div className="divider-line"></div>
-          </div>
-
-          {/* Education */}
-          <div className="journey-block reverse">
-            <div className="journey-info">
-              <span className="journey-year">2022 — 2027</span>
-              <h3 className="journey-title">Software Engineering</h3>
-              <p className="journey-desc">
-                Pursuing my degree at an international university, combining theoretical 
-                knowledge with practical skills. One year remaining until graduation, 
-                ready to bring fresh ideas to the tech world.
-              </p>
-              <div className="journey-tags">
-                <span>Problem Solving</span>
-                <span>Full Stack Dev</span>
-                <span>System Design</span>
-              </div>
-            </div>
-            <div className="journey-visual">
-              <div className="progress-ring">
-                <svg viewBox="0 0 120 120">
-                  <circle className="ring-bg" cx="60" cy="60" r="54"/>
-                  <circle className="ring-progress" cx="60" cy="60" r="54"/>
-                </svg>
-                <div className="progress-content">
-                  <span className="progress-percent">75%</span>
-                  <span className="progress-text">Complete</span>
-                </div>
-              </div>
-              <p className="final-year-badge">🎓 Final Year Student</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
+  return <section id="process" className="experience page-width" aria-labelledby="process-title">
+    <div className="section-heading"><span className="eyebrow">03 / Process</span><div><h2 id="process-title">Simple from upload<br />to approval.</h2><p className="process-intro">Your part can end after filming. I handle the reviewing, selecting, structuring, cutting, captions, sound, and finishing.</p></div></div>
+    <ol className="process-list">{steps.map(([title, copy], index) => <li key={title}><span className="step-number eyebrow">0{index + 1}</span><h3>{title}</h3><p>{copy}</p></li>)}</ol>
+    <div className="about-panel">
+      <span className="eyebrow">About Samy</span>
+      <div className="about-copy"><h2>Editing that fits<br />the creator.</h2><p>I’m a short-form editor focused on clean, purposeful creator content. I adapt the pacing, captions, sound, and visual treatment to each creator’s existing voice instead of forcing every client into one editing style.</p><p>My graphic-design background supports stronger typography and composition. My technical background keeps the working process organized and dependable.</p><a href="#contact">Discuss your content <span aria-hidden="true">↘</span></a></div>
+    </div>
+  </section>
 }
