@@ -21,7 +21,7 @@ npm run build
 npm run preview
 ```
 
-Vite produces the deployable site in `dist/`. `vercel.json` provides SPA rewrites so both portfolio URLs load directly on Vercel.
+Vite produces the deployable site in `dist/`. `netlify.toml` builds and publishes that directory on Netlify. `public/_redirects` sends the old `/webdevelopment` URL to `/web-development` and serves the app for direct visits to its routes. `vercel.json` provides the equivalent SPA rewrite on Vercel.
 
 ## Structure
 
