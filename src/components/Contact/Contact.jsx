@@ -3,15 +3,11 @@ import emailjs from '@emailjs/browser'
 import Arrow from '../shared/Arrow'
 import './Contact.css'
 
-const emailjsOverrides = {
-  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
-  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+const emailjsConfig = {
+  serviceId: 'service_cp8zkth',
+  templateId: 'template_phhpi8t',
+  publicKey: '6w5JlL2NKi2SZdtZf',
 }
-const overrideValues = Object.values(emailjsOverrides)
-const emailjsConfig = overrideValues.some(Boolean)
-  ? overrideValues.every(Boolean) ? emailjsOverrides : null
-  : { serviceId: 'service_l27gciw', templateId: 'template_upuqc3x', publicKey: 'm8EqVxAfEurm8Tc52' }
 
 const contactContent = {
   video: {
@@ -62,10 +58,15 @@ export default function Contact({ mode = 'video' }) {
     setIsSubmitting(true)
     setFormMessage({ type: '', text: '' })
     try {
-      if (!emailjsConfig) throw new Error('Incomplete EmailJS configuration')
       const now = new Date()
       await emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, {
         name: formData.name.trim(), email: formData.email.trim(),
+        portfolio: mode === 'web' ? 'Web development' : 'Video editing',
+        profile_label: content.profileLabel,
+        profile: formData.profile.trim() || 'Not provided',
+        volume_label: content.volumeLabel,
+        volume: formData.volume || 'Not provided',
+        project_message: formData.message.trim(),
         message: [formData.message.trim(), `Portfolio: ${mode}`, formData.profile && `Profile / project: ${formData.profile}`, formData.volume && `${content.volumeLabel}: ${formData.volume}`].filter(Boolean).join('\n\n'),
         date: now.toLocaleDateString(), time: now.toLocaleTimeString(),
       }, emailjsConfig.publicKey)
