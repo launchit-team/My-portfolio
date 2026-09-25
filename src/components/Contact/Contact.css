@@ -9,6 +9,7 @@
 .contact-promise { max-width: 360px; margin-top: 55px; padding-top: 20px; border-top: 1px solid var(--line); }
 .contact-promise p { margin-top: 13px; color: var(--muted); font-size: 11px; line-height: 1.7; }
 .form-top-row { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+.form-honeypot { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
 .form-field { margin-bottom: 25px; min-width: 0; }
 .form-field label { font-size: 11px; display: block; margin-bottom: 12px; }
 .form-field label span { color: var(--accent); }

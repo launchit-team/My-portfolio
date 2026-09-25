@@ -41,6 +41,8 @@ Paste [the contact template](design/emailjs-contact-template.html) into the new 
 
 The site sends `name`, `email`, `portfolio`, `profile_label`, `profile`, `volume_label`, `volume`, `project_message`, `date`, and `time` for this template. It also sends the legacy combined `message` field so the current starter template stays readable until the new HTML is pasted.
 
+The form includes a hidden website field to catch simple bots and, when browser storage is available, allows one successful submission per browser per minute. EmailJS also applies [IP-based limits](https://www.emailjs.com/docs/faq/does-emailjs-expose-my-account-to-spam/). In the EmailJS account, add `https://sami-creative.com` under [Domains](https://www.emailjs.com/docs/faq/can-i-add-my-domain-to-allowlist/) to restrict allowed origins. For stronger protection against direct API abuse, EmailJS supports [reCAPTCHA v2](https://www.emailjs.com/docs/user-guide/adding-captcha-verification/) on the template; enabling it also requires a Google reCAPTCHA site key on the frontend and secret key in EmailJS.
+
 ## Verification
 
 - Production build and ESLint pass.

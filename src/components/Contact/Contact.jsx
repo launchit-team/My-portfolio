@@ -9,6 +9,26 @@ const emailjsConfig = {
   publicKey: '6w5JlL2NKi2SZdtZf',
 }
 
+const lastSubmissionKey = 'samy-contact-last-submission'
+const submissionCooldownMs = 60_000
+
+function wasRecentlySubmitted() {
+  try {
+    const elapsed = Date.now() - Number(window.localStorage.getItem(lastSubmissionKey) || 0)
+    return elapsed >= 0 && elapsed < submissionCooldownMs
+  } catch {
+    return false
+  }
+}
+
+function rememberSubmission() {
+  try {
+    window.localStorage.setItem(lastSubmissionKey, String(Date.now()))
+  } catch {
+    // The form still works when browser storage is unavailable.
+  }
+}
+
 const contactContent = {
   video: {
     eyebrow: '04 / Start a project',
@@ -46,12 +66,22 @@ export default function Contact({ mode = 'video' }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formMessage, setFormMessage] = useState({ type: '', text: '' })
   const sending = useRef(false)
+  const spamTrap = useRef(null)
   const handleChange = event => setFormData(previous => ({ ...previous, [event.target.name]: event.target.value }))
   const handleSubmit = async event => {
     event.preventDefault()
     if (sending.current) return
+    if (spamTrap.current?.value) {
+      spamTrap.current.value = ''
+      setFormMessage({ type: 'error', text: 'Please try submitting again.' })
+      return
+    }
     if ([formData.name, formData.email, formData.message].some(value => !value.trim())) {
       setFormMessage({ type: 'error', text: 'Please complete each field before sending.' })
+      return
+    }
+    if (wasRecentlySubmitted()) {
+      setFormMessage({ type: 'error', text: 'Please wait a minute before sending another message.' })
       return
     }
     sending.current = true
@@ -70,6 +100,7 @@ export default function Contact({ mode = 'video' }) {
         message: [formData.message.trim(), `Portfolio: ${mode}`, formData.profile && `Profile / project: ${formData.profile}`, formData.volume && `${content.volumeLabel}: ${formData.volume}`].filter(Boolean).join('\n\n'),
         date: now.toLocaleDateString(), time: now.toLocaleTimeString(),
       }, emailjsConfig.publicKey)
+      rememberSubmission()
       setFormData({ name: '', email: '', profile: '', volume: '', message: '' })
       setFormMessage({ type: 'success', text: 'Message sent. Thanks for getting in touch!' })
     } catch {
@@ -83,6 +114,7 @@ export default function Contact({ mode = 'video' }) {
     <div className="contact-heading"><span className="eyebrow">{content.eyebrow}</span><h2 id="contact-title">{content.title}</h2><p>{content.intro}</p></div>
     <div className="contact-content"><div className="contact-info"><span className="eyebrow">Direct contact</span><p>{content.direct}</p><a href="mailto:hello@sami-creative.com" className="contact-email">hello@sami-creative.com <Arrow /></a><div className="contact-promise"><span className="eyebrow">Good to include</span><p>{content.helpful}</p></div></div>
       <form className="contact-form" onSubmit={handleSubmit} aria-busy={isSubmitting}>
+        <div className="form-honeypot" aria-hidden="true"><label htmlFor="contact-website">Website</label><input id="contact-website" name="website" type="text" tabIndex="-1" autoComplete="off" ref={spamTrap} /></div>
         <div className="form-top-row"><div className="form-field"><label htmlFor="name">Your name <span>*</span></label><input id="name" name="name" autoComplete="name" placeholder="Your name" value={formData.name} onChange={handleChange} required disabled={isSubmitting} maxLength={120} /></div><div className="form-field"><label htmlFor="email">Your email <span>*</span></label><input id="email" type="email" name="email" autoComplete="email" placeholder="you@email.com" value={formData.email} onChange={handleChange} required disabled={isSubmitting} maxLength={254} /></div></div>
         <div className="form-top-row"><div className="form-field"><label htmlFor="profile">{content.profileLabel}</label><input id="profile" name="profile" type="url" autoComplete="url" placeholder={content.profilePlaceholder} value={formData.profile} onChange={handleChange} disabled={isSubmitting} maxLength={500} /></div><div className="form-field"><label htmlFor="volume">{content.volumeLabel}</label><select id="volume" name="volume" value={formData.volume} onChange={handleChange} disabled={isSubmitting}><option value="">Select an option</option>{content.volumeOptions.map(option => <option key={option}>{option}</option>)}</select></div></div>
         <div className="form-field"><label htmlFor="message">{content.messageLabel} <span>*</span></label><textarea id="message" name="message" placeholder={content.messagePlaceholder} rows="4" value={formData.message} onChange={handleChange} required disabled={isSubmitting} maxLength={5000} /></div>
