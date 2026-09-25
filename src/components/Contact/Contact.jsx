@@ -10,7 +10,7 @@ const emailjsConfig = {
 }
 
 const lastSubmissionKey = 'samy-contact-last-submission'
-const submissionCooldownMs = 60_000
+const submissionCooldownMs = 120_000
 
 function wasRecentlySubmitted() {
   try {
@@ -81,7 +81,7 @@ export default function Contact({ mode = 'video' }) {
       return
     }
     if (wasRecentlySubmitted()) {
-      setFormMessage({ type: 'error', text: 'Please wait a minute before sending another message.' })
+      setFormMessage({ type: 'error', text: 'Please wait two minutes before sending another message.' })
       return
     }
     sending.current = true
@@ -99,7 +99,7 @@ export default function Contact({ mode = 'video' }) {
         project_message: formData.message.trim(),
         message: [formData.message.trim(), `Portfolio: ${mode}`, formData.profile && `Profile / project: ${formData.profile}`, formData.volume && `${content.volumeLabel}: ${formData.volume}`].filter(Boolean).join('\n\n'),
         date: now.toLocaleDateString(), time: now.toLocaleTimeString(),
-      }, emailjsConfig.publicKey)
+      }, { publicKey: emailjsConfig.publicKey, blockHeadless: true })
       rememberSubmission()
       setFormData({ name: '', email: '', profile: '', volume: '', message: '' })
       setFormMessage({ type: 'success', text: 'Message sent. Thanks for getting in touch!' })
