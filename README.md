@@ -35,7 +35,18 @@ The supplied Passage deployment currently renders a blank page. Its preview uses
 
 ## Contact integration
 
-`src/components/Contact/Contact.jsx` preserves the existing EmailJS service, template, and public key. The shared form adapts its labels and qualifying fields to each service while retaining required-field validation, duplicate-submission prevention, pending state, accessible feedback, direct email, and draft preservation on failure.
+`src/components/Contact/Contact.jsx` uses the existing EmailJS service, template, and public key until all three `VITE_EMAILJS_*` variables are set. The shared form adapts its labels and qualifying fields to each service while retaining required-field validation, duplicate-submission prevention, pending state, accessible feedback, direct email, and draft preservation on failure.
+
+### Move the contact form to a new EmailJS account
+
+The current template is in the EmailJS account signed in as `launchit.dev.team@gmail.com`. The intended new account sign-in is `liveclipzs@gmail.com`; form submissions should go to `hello@sami-creative.com`.
+
+1. Sign up at [EmailJS](https://dashboard.emailjs.com/sign-up) with `liveclipzs@gmail.com` and complete email verification.
+2. In the new account, connect an email service. Create a contact template with **To Email** set to `hello@sami-creative.com`, **Reply-To** set to `{{email}}`, and body fields such as `{{name}}`, `{{email}}`, `{{message}}`, `{{date}}`, and `{{time}}`. Test it in EmailJS.
+3. Copy the new Service ID, Template ID, and Account Public Key. In Netlify, set `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, and `VITE_EMAILJS_PUBLIC_KEY` for the production build. Set all three together; a partial configuration disables form submission rather than mixing accounts.
+4. Trigger a new Netlify deploy, submit a test message on the live website, and check `hello@sami-creative.com` for delivery. After that succeeds, remove the old account's fallback IDs from `src/components/Contact/Contact.jsx`.
+
+These three IDs are public browser configuration, not a password or EmailJS private key. Do not put the new account password or private key in the site or Netlify's `VITE_` variables.
 
 ## Verification
 

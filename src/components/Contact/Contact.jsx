@@ -2,6 +2,17 @@ import { useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
 import Arrow from '../shared/Arrow'
 import './Contact.css'
+
+const emailjsOverrides = {
+  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+}
+const overrideValues = Object.values(emailjsOverrides)
+const emailjsConfig = overrideValues.some(Boolean)
+  ? overrideValues.every(Boolean) ? emailjsOverrides : null
+  : { serviceId: 'service_l27gciw', templateId: 'template_upuqc3x', publicKey: 'm8EqVxAfEurm8Tc52' }
+
 const contactContent = {
   video: {
     eyebrow: '04 / Start a project',
@@ -51,12 +62,13 @@ export default function Contact({ mode = 'video' }) {
     setIsSubmitting(true)
     setFormMessage({ type: '', text: '' })
     try {
+      if (!emailjsConfig) throw new Error('Incomplete EmailJS configuration')
       const now = new Date()
-      await emailjs.send('service_l27gciw', 'template_upuqc3x', {
+      await emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, {
         name: formData.name.trim(), email: formData.email.trim(),
         message: [formData.message.trim(), `Portfolio: ${mode}`, formData.profile && `Profile / project: ${formData.profile}`, formData.volume && `${content.volumeLabel}: ${formData.volume}`].filter(Boolean).join('\n\n'),
         date: now.toLocaleDateString(), time: now.toLocaleTimeString(),
-      }, 'm8EqVxAfEurm8Tc52')
+      }, emailjsConfig.publicKey)
       setFormData({ name: '', email: '', profile: '', volume: '', message: '' })
       setFormMessage({ type: 'success', text: 'Message sent. Thanks for getting in touch!' })
     } catch {
