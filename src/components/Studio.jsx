@@ -137,7 +137,7 @@ function Services({ mode }) {
 }
 
 function Closing({ mode, onContact }) {
-  return <><section className="closing wrap"><h2>{mode === 'home' ? <>Good ideas<br />make a better internet.</> : mode === 'web' ? <>Let’s build<br />something great.</> : <>Your next story.<br />Let’s make it happen.</>}</h2><p>{mode === 'home' ? 'Video editing. Web development. A thoughtful approach to both.' : mode === 'web' ? 'Have a project in mind? Let’s turn your ideas into a clear, useful digital experience.' : 'Share your footage, your references, and the kind of editing support you need.'}</p><button className="pill primary" onClick={onContact}>Start a project <Arrow /></button></section><footer className="studio-footer wrap"><a className="wordmark" href="/">samy<span>°</span></a><a className="footer-email" href="mailto:liveclipzs@gmail.com">liveclipzs@gmail.com</a><span className="mono">FOCUSED ON QUALITY<br />BUILT WITH INTENTION</span></footer></>
+  return <><section className="closing wrap"><h2>{mode === 'home' ? <>Good ideas<br />make a better internet.</> : mode === 'web' ? <>Let’s build<br />something great.</> : <>Your next story.<br />Let’s make it happen.</>}</h2><p>{mode === 'home' ? 'Video editing. Web development. A thoughtful approach to both.' : mode === 'web' ? 'Have a project in mind? Let’s turn your ideas into a clear, useful digital experience.' : 'Share your footage, your references, and the kind of editing support you need.'}</p><button className="pill primary" onClick={onContact}>Start a project <Arrow /></button></section><footer className="studio-footer wrap"><a className="wordmark" href="/">samy<span>°</span></a><a className="footer-email" href="mailto:hello@sami-creative.com">hello@sami-creative.com</a><span className="mono">FOCUSED ON QUALITY<br />BUILT WITH INTENTION</span></footer></>
 }
 
 export function StudioPage({ mode }) {
@@ -158,7 +158,7 @@ export function StudioPage({ mode }) {
       <Contact key={contactMode} mode={contactMode} />
     </dialog>
     <dialog className="about-dialog" aria-labelledby="about-title" ref={aboutRef} onClick={e => { if (e.target === e.currentTarget) aboutRef.current.close() }}>
-      <button className="dialog-close" onClick={() => aboutRef.current.close()}>Close ×</button><span className="mono">ABOUT SAMY</span><h2 id="about-title">A creative eye.<br />A technical foundation.</h2><p>I’m a short-form video editor and web developer. My graphic-design background informs the typography, composition, and detail in my work. My software-engineering background keeps the process organized and dependable.</p><dl><div><dt>2023 — present</dt><dd>Instagram page management · 317K+ community</dd></div><div><dt>2022 — 2027</dt><dd>Software engineering studies</dd></div></dl><a className="text-button" href="mailto:liveclipzs@gmail.com">Get in touch <Arrow /></a>
+      <button className="dialog-close" onClick={() => aboutRef.current.close()}>Close ×</button><span className="mono">ABOUT SAMY</span><h2 id="about-title">A creative eye.<br />A technical foundation.</h2><p>I’m a short-form video editor and web developer. My graphic-design background informs the typography, composition, and detail in my work. My software-engineering background keeps the process organized and dependable.</p><dl><div><dt>2023 — present</dt><dd>Instagram page management · 317K+ community</dd></div><div><dt>2022 — 2027</dt><dd>Software engineering studies</dd></div></dl><a className="text-button" href="mailto:hello@sami-creative.com">Get in touch <Arrow /></a>
     </dialog>
   </div>
 }
